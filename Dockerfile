@@ -26,8 +26,8 @@ RUN apt-get update -qq && apt-get install -qqy wget curl git iptables ca-certifi
 
 # for jenkins
 RUN echo deb http://pkg.jenkins-ci.org/debian binary/ >> /etc/apt/sources.list \
-    && wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
-RUN apt-get update -qq && apt-get install -qqy jenkins
+    && wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add - \
+    && apt-get update -qq && apt-get install -qqy jenkins
 
 # now we install docker in docker - thanks to https://github.com/jpetazzo/dind
 # We install newest docker into our docker in docker container
