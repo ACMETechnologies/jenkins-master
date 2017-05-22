@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER  Landon Wainwright <landon@acmeticketing.com>
+MAINTAINER Landon Wainwright <landon@acmeticketing.com>
 
 # expose the port
 EXPOSE 8080
