@@ -24,10 +24,16 @@ RUN echo deb http://archive.ubuntu.com/ubuntu precise universe > /etc/apt/source
 # apparmor is required to run docker server within docker container
 RUN apt-get update -qq && apt-get install -qqy wget curl git iptables ca-certificates apparmor
 
+RUN apt-get update && apt-get -y upgrade && apt-get -y install software-properties-common bzip2 && add-apt-repository ppa:webupd8team/java -y && apt-get update
+
+RUN (echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections) && apt-get install -y oracle-java8-installer oracle-java8-set-default
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
 # for jenkins
 RUN echo deb http://pkg.jenkins-ci.org/debian binary/ >> /etc/apt/sources.list \
     && wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
-RUN apt-get update -qq && apt-get install -qqy jenkins
+RUN apt-get update -y && apt-get install -y jenkins
 
 # now we install docker in docker - thanks to https://github.com/jpetazzo/dind
 # We install newest docker into our docker in docker container
