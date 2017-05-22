@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Bilal Sheikh <bilal@techtraits.com>
+MAINTAINER  Landon Wainwright <landon@acmeticketing.com>
 
 # expose the port
 EXPOSE 8080
